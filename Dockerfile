@@ -1,6 +1,10 @@
-FROM alpine:latest
+FROM alpine:3.19
 
-RUN apk add --no-cache openvpn dante-client curl
+RUN apk update && apk add --no-cache \
+    openvpn \
+    dante-server \
+    curl \
+    bash
 
 COPY vpnuk.ovpn /etc/openvpn/client.conf
 COPY sockd.conf /etc/sockd.conf
